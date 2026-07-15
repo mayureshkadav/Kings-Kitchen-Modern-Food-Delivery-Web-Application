@@ -1,0 +1,145 @@
+/* Sidebar Container */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Close Button */
+.closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: #ff4d4d;
+  color: white;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Heading */
+.sidebar h2 {
+  margin-bottom: 25px;
+  color: #222;
+}
+
+/* Cart Item Row */
+.cartItems {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Product Image */
+.cartItems img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Product Details */
+.cartDetails {
+  flex: 1;
+}
+
+.cartDetails h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.cartDetails p {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Quantity Controls */
+.qtyControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qtyControls button {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #999;
+  background: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.qtyControls span {
+  font-size: 16px;
+  font-weight: bold;
+  min-width: 15px;
+  text-align: center;
+}
+
+/* Remove Button */
+.removeBtn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.removeBtn:hover {
+  background: #c0392b;
+}
+
+/* Total */
+.total {
+  margin-top: 30px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Checkout Button */
+.checkoutBtn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  background: #0057d9;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.checkoutBtn:hover {
+  background: #0048b3;
+}
+
+/* Empty Cart */
+.emptyCart {
+  text-align: center;
+  color: #777;
+  margin-top: 40px;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+  }
+
+  .cartItems {
+    flex-wrap: wrap;
+  }
+}
