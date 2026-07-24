@@ -1,7 +1,19 @@
 import React from "react";
 import "./Card.css";
+import LazyImage from "./LazyImage";
+import SkeletonCard from "../SkeletonCard/SkeletonCard";
 
-const Card = ({ cardData, addToCart }) => {
+const Card = ({ cardData, addToCart, isLoading }) => {
+  if (isLoading) {
+    return (
+      <div className="cardContainer">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <SkeletonCard key={index} />
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className="cardContainer">
       {cardData.length === 0 ? (
@@ -9,12 +21,7 @@ const Card = ({ cardData, addToCart }) => {
       ) : (
         cardData.map((item) => (
           <div className="card" key={item.id}>
-            <img
-              src={item.image}
-              alt={item.name}
-              height="250px"
-              width="300px"
-            />
+            <LazyImage src={item.image} alt={item.name} />
 
             <h3>{item.name}</h3>
 

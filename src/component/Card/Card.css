@@ -25,10 +25,38 @@
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 }
 
-.card img {
+.imageWrapper {
+  position: relative;
   width: 100%;
   height: 200px;
+  overflow: hidden;
+  background: #f8f7f5;
+}
+
+.imageSkeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #f4f4f4 25%, #e8e8e8 50%, #f4f4f4 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  transition: opacity 0.35s ease;
+}
+
+.imageSkeleton.hidden {
+  opacity: 0;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.productImage.visible {
+  opacity: 1;
 }
 
 .card h3 {
@@ -77,6 +105,15 @@
 
   .card {
     width: 90%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
   }
 }
 

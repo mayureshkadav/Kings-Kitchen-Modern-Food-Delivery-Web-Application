@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import biryani from "../../assets/chicken-biryani.jpg";
 import butterChicken from "../../assets/Butter-Chicken.jpg";
 import champ from "../../assets/cham-cham.jpg";
@@ -15,115 +15,125 @@ import rasmalai from "../../assets/Rasmalai.jpg";
 import vadapav from "../../assets/Vada-Pav.webp";
 import white from "../../assets/white_sauce_pasta.jpg";
 import Card from "../Card/Card";
-import { useState } from "react";
 import { FcSearch } from "react-icons/fc";
 import "./Home.css";
 
+const menuItems = [
+  {
+    id: 1,
+    name: "Chicken Biryani",
+    image: biryani,
+    price: 200,
+  },
+  {
+    id: 2,
+    name: "Butter Chicken",
+    image: butterChicken,
+    price: 250,
+  },
+  {
+    id: 3,
+    name: "Cham Cham",
+    image: champ,
+    price: 150,
+  },
+  {
+    id: 4,
+    name: "Channa Batura",
+    image: channaBatura,
+    price: 100,
+  },
+  {
+    id: 5,
+    name: "Chicken 65",
+    image: chicken65,
+    price: 180,
+  },
+  {
+    id: 6,
+    name: "Chicken Handi",
+    image: chickenHandi,
+    price: 220,
+  },
+  {
+    id: 7,
+    name: "Gajar Halwa",
+    image: gajarHalwa,
+    price: 120,
+  },
+  {
+    id: 8,
+    name: "Gulab Jamun",
+    image: gulabJamun,
+    price: 80,
+  },
+  {
+    id: 9,
+    name: "Misal Pav",
+    image: misalpav,
+    price: 90,
+  },
+  {
+    id: 10,
+    name: "Matar Paneer",
+    image: matarpaneer,
+    price: 160,
+  },
+  {
+    id: 11,
+    name: "Non Veg Thali",
+    image: nonvegthali,
+    price: 300,
+  },
+  {
+    id: 12,
+    name: "Pav Bhaji",
+    image: pavbhaji,
+    price: 110,
+  },
+  {
+    id: 13,
+    name: "Rasmalai",
+    image: rasmalai,
+    price: 130,
+  },
+  {
+    id: 14,
+    name: "Vada Pav",
+    image: vadapav,
+    price: 50,
+  },
+  {
+    id: 15,
+    name: "Chicken Biryani",
+    image: biryani,
+    price: 200,
+  },
+  {
+    id: 16,
+    name: "White Sauce Pasta",
+    image: white,
+    price: 140,
+  },
+];
+
 const Home = ({ addToCart }) => {
-  let cardData = [
-    {
-      id: 1,
-      name: "Chicken Biryani",
-      image: biryani,
-      price: 200,
-    },
-    {
-      id: 2,
-      name: "Butter Chicken",
-      image: butterChicken,
-      price: 250,
-    },
-    {
-      id: 3,
-      name: "Cham Cham",
-      image: champ,
-      price: 150,
-    },
-    {
-      id: 4,
-      name: "Channa Batura",
-      image: channaBatura,
-      price: 100,
-    },
-    {
-      id: 5,
-      name: "Chicken 65",
-      image: chicken65,
-      price: 180,
-    },
-    {
-      id: 6,
-      name: "Chicken Handi",
-      image: chickenHandi,
-      price: 220,
-    },
-    {
-      id: 7,
-      name: "Gajar Halwa",
-      image: gajarHalwa,
-      price: 120,
-    },
-    {
-      id: 8,
-      name: "Gulab Jamun",
-      image: gulabJamun,
-      price: 80,
-    },
-    {
-      id: 9,
-      name: "Misal Pav",
-      image: misalpav,
-      price: 90,
-    },
-    {
-      id: 10,
-      name: "Matar Paneer",
-      image: matarpaneer,
-      price: 160,
-    },
-    {
-      id: 11,
-      name: "Non Veg Thali",
-      image: nonvegthali,
-      price: 300,
-    },
-    {
-      id: 12,
-      name: "Pav Bhaji",
-      image: pavbhaji,
-      price: 110,
-    },
-    {
-      id: 13,
-      name: "Rasmalai",
-      image: rasmalai,
-      price: 130,
-    },
-    {
-      id: 14,
-      name: "Vada Pav",
-      image: vadapav,
-      price: 50,
-    },
-    {
-      id: 15,
-      name: "Chicken Biryani",
-      image: biryani,
-      price: 200,
-    },
-    {
-      id: 16,
-      name: "White Sauce Pasta",
-      image: white,
-      price: 140,
-    },
-  ];
-
   const [search, setSearch] = useState("");
+  const [cardData, setCardData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  let filteredData = cardData.filter((item) => {
-    return item.name.toLowerCase().includes(search.toLowerCase());
-  });
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setCardData(menuItems);
+      setIsLoading(false);
+    }, 400);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  const filteredData = cardData.filter((item) =>
+    item.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className="homePage">
@@ -161,6 +171,7 @@ const Home = ({ addToCart }) => {
                   placeholder="Search for food items"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
+                  disabled={isLoading}
                 />
               </div>
             </div>
@@ -170,10 +181,13 @@ const Home = ({ addToCart }) => {
 
       <section className="menuSection">
         <div className="sectionHeading">
-          <h2 >Popular Menu</h2>
-         
+          <h2>Popular Menu</h2>
         </div>
-        <Card cardData={filteredData} addToCart={addToCart} />
+        <Card
+          cardData={filteredData}
+          addToCart={addToCart}
+          isLoading={isLoading}
+        />
       </section>
     </div>
   );

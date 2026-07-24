@@ -23,7 +23,13 @@ const CartSidebar = ({
       ) : (
         cart.map((item) => (
           <div className="cartItems" key={item.id}>
-            <img src={item.image} alt={item.name} width="80" height="80" />
+            <img
+              src={item.image}
+              alt={item.name}
+              width="80"
+              height="80"
+              loading="lazy"
+            />
 
             <div className="cartDetails">
               <h3>{item.name}</h3>
